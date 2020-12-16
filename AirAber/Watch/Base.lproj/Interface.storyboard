@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17506" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i6Z-lo-QB6" pageOrientation="vertical">
+    <device id="watch38"/>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
+    </dependencies>
+    <scenes>
+        <!--Flight-->
+        <scene sceneID="9ht-DC-amT">
+            <objects>
+                <controller identifier="Flight" hidesWhenLoading="NO" fullBounds="YES" id="i6Z-lo-QB6" customClass="FlightInterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <label alignment="left" text="BPM" id="7XN-EB-oUb">
+                            <color key="textColor" red="0.98039215686274506" green="0.066666666666666666" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label width="1" height="35" alignment="left" text="..." textAlignment="center" id="AVd-Ob-RAe">
+                            <color key="textColor" red="0.98039215686274506" green="0.066666666666666666" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" pointSize="36"/>
+                        </label>
+                        <label width="1" height="41" alignment="center" text="YYYY-MM-DD HH:mm:ss" textAlignment="center" numberOfLines="2" id="1DR-7d-Sxu">
+                            <fontDescription key="font" type="system" pointSize="16"/>
+                        </label>
+                        <button width="1" alignment="left" title="Start" id="No2-pe-tuQ">
+                            <connections>
+                                <action selector="startBtnTapped" destination="i6Z-lo-QB6" id="0yw-d0-Tmc"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="heartRateLabel" destination="AVd-Ob-RAe" id="1xX-xE-Yh0"/>
+                        <outlet property="startStopBtn" destination="No2-pe-tuQ" id="kGo-sc-eLh"/>
+                        <outlet property="timeLabel" destination="1DR-7d-Sxu" id="Iuu-UT-zf9"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-302" y="-1164"/>
+        </scene>
+    </scenes>
+</document>

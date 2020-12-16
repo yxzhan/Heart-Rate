@@ -79,7 +79,7 @@
 		40865B4E1D8E8A670076CEF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40865B501D8E8A670076CEF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40865B5D1D8E99420076CEF3 /* FlightInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightInterfaceController.swift; sourceTree = "<group>"; };
-		7B8FA2391B72275A00B1E765 /* AirAber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirAber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B8FA2391B72275A00B1E765 /* Heart-Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart-Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8FA23C1B72275A00B1E765 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8FA23E1B72275A00B1E765 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7B8FA2411B72275A00B1E765 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		831BBD8A257AA8A4007F0F93 /* Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Watch Extension.entitlements"; sourceTree = "<group>"; };
 		831BBD8C257AA8A4007F0F93 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		8397A1AF25890CE500AF0F32 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
-		83AA3D18258188D000044497 /* AirAber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AirAber.entitlements; sourceTree = "<group>"; };
+		83AA3D18258188D000044497 /* Heart-Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Heart-Clock.entitlements"; sourceTree = "<group>"; };
 		83AA3D19258188D000044497 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -141,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				40113A8D1F5A53680089A5C1 /* README.md */,
-				7B8FA23B1B72275A00B1E765 /* AirAber */,
+				7B8FA23B1B72275A00B1E765 /* Heart-Clock */,
 				40865B3A1D8E8A660076CEF3 /* Watch */,
 				40865B491D8E8A670076CEF3 /* Watch Extension */,
 				7B8FA23A1B72275A00B1E765 /* Products */,
@@ -154,24 +154,24 @@
 		7B8FA23A1B72275A00B1E765 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7B8FA2391B72275A00B1E765 /* AirAber.app */,
+				7B8FA2391B72275A00B1E765 /* Heart-Clock.app */,
 				40865B391D8E8A660076CEF3 /* Watch.app */,
 				40865B451D8E8A670076CEF3 /* Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7B8FA23B1B72275A00B1E765 /* AirAber */ = {
+		7B8FA23B1B72275A00B1E765 /* Heart-Clock */ = {
 			isa = PBXGroup;
 			children = (
-				83AA3D18258188D000044497 /* AirAber.entitlements */,
+				83AA3D18258188D000044497 /* Heart-Clock.entitlements */,
 				7B8FA23C1B72275A00B1E765 /* AppDelegate.swift */,
 				7B8FA23E1B72275A00B1E765 /* ViewController.swift */,
 				7B8FA2401B72275A00B1E765 /* Main.storyboard */,
 				7B8FA2431B72275A00B1E765 /* Assets.xcassets */,
 				7B8FA2481B72275A00B1E765 /* Info.plist */,
 			);
-			path = AirAber;
+			path = "Heart-Clock";
 			sourceTree = "<group>";
 		};
 		831BBD8B257AA8A4007F0F93 /* Frameworks */ = {
@@ -220,9 +220,9 @@
 			productReference = 40865B451D8E8A670076CEF3 /* Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		7B8FA2381B72275A00B1E765 /* AirAber */ = {
+		7B8FA2381B72275A00B1E765 /* Heart-Clock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7B8FA24B1B72275A00B1E765 /* Build configuration list for PBXNativeTarget "AirAber" */;
+			buildConfigurationList = 7B8FA24B1B72275A00B1E765 /* Build configuration list for PBXNativeTarget "Heart-Clock" */;
 			buildPhases = (
 				7B8FA2351B72275A00B1E765 /* Sources */,
 				7B8FA2361B72275A00B1E765 /* Frameworks */,
@@ -234,11 +234,11 @@
 			dependencies = (
 				40865B521D8E8A670076CEF3 /* PBXTargetDependency */,
 			);
-			name = AirAber;
+			name = "Heart-Clock";
 			packageProductDependencies = (
 			);
 			productName = AirAber;
-			productReference = 7B8FA2391B72275A00B1E765 /* AirAber.app */;
+			productReference = 7B8FA2391B72275A00B1E765 /* Heart-Clock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -270,7 +270,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7B8FA2341B72275A00B1E765 /* Build configuration list for PBXProject "AirAber" */;
+			buildConfigurationList = 7B8FA2341B72275A00B1E765 /* Build configuration list for PBXProject "Heart-Clock" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -286,7 +286,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7B8FA2381B72275A00B1E765 /* AirAber */,
+				7B8FA2381B72275A00B1E765 /* Heart-Clock */,
 				40865B381D8E8A660076CEF3 /* Watch */,
 				40865B441D8E8A670076CEF3 /* Watch Extension */,
 			);
@@ -393,7 +393,7 @@
 				DEVELOPMENT_TEAM = 5K6SFNPDD6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = piggypee.AirAber.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggypee.heart-clock.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -419,7 +419,7 @@
 				DEVELOPMENT_TEAM = 5K6SFNPDD6;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = piggypee.AirAber.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggypee.heart-clock.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -444,7 +444,7 @@
 				DEVELOPMENT_TEAM = 5K6SFNPDD6;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = piggypee.AirAber.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggypee.heart-clock.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -469,7 +469,7 @@
 				DEVELOPMENT_TEAM = 5K6SFNPDD6;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = piggypee.AirAber.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggypee.heart-clock.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -582,13 +582,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AirAber/AirAber.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Heart-Clock/Heart-Clock.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5K6SFNPDD6;
-				INFOPLIST_FILE = AirAber/Info.plist;
+				INFOPLIST_FILE = "Heart-Clock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = piggypee.AirAber;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggypee.heart-clock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -600,13 +600,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AirAber/AirAber.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Heart-Clock/Heart-Clock.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5K6SFNPDD6;
-				INFOPLIST_FILE = AirAber/Info.plist;
+				INFOPLIST_FILE = "Heart-Clock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = piggypee.AirAber;
+				PRODUCT_BUNDLE_IDENTIFIER = "piggypee.heart-clock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -635,7 +635,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7B8FA2341B72275A00B1E765 /* Build configuration list for PBXProject "AirAber" */ = {
+		7B8FA2341B72275A00B1E765 /* Build configuration list for PBXProject "Heart-Clock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B8FA2491B72275A00B1E765 /* Debug */,
@@ -644,7 +644,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7B8FA24B1B72275A00B1E765 /* Build configuration list for PBXNativeTarget "AirAber" */ = {
+		7B8FA24B1B72275A00B1E765 /* Build configuration list for PBXNativeTarget "Heart-Clock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B8FA24C1B72275A00B1E765 /* Debug */,

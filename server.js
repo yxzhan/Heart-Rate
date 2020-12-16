@@ -24,7 +24,7 @@ app.get('/test', function (req, res) {
 app.post('/heartrate', function (req, res) {
   // console.log(new Date() + '\npost heart rate')
   // console.log(Date.now() - parseFloat(req.body.timestamp) * 1000)
-  // console.log(req.body)
+  console.log(req.body)
   io.emit('message', JSON.stringify(req.body))
   res.setHeader('Content-Type', 'application/json');
   res.set("Connection", "close");

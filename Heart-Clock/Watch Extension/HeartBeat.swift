@@ -46,7 +46,7 @@ class HealthBeat {
           print("Error: \(error.localizedDescription)")
           return
         }
-        self.getHeartRateData()
+//        self.getHeartRateData()
       }
       self.healthStore.execute(query)
     }

@@ -31,7 +31,7 @@
 import UIKit
 import WatchConnectivity
 import Foundation
-
+import HealthKit
 
 class ViewController: UIViewController, WCSessionDelegate{
   
@@ -41,20 +41,14 @@ class ViewController: UIViewController, WCSessionDelegate{
   let api = Api()
   var wcSession : WCSession! = nil
   var allLog:String = ""
+  let healthStore = HKHealthStore()
 
   override func viewDidLoad() {
+    getHealthDataAuth()
     wcSession = WCSession.default
     wcSession.delegate = self
     wcSession.activate()
     hostInput.text = api.apiHost
-
-//    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-//      self.api.post(Double.random(in: 1...100), "timestamp")
-////      self.allLog += "adfadf\n"
-////      self.displayLabel.text = self.allLog
-//    }
-
-    
   }
   
   @IBAction func hostBtnTapped() {
@@ -76,11 +70,18 @@ class ViewController: UIViewController, WCSessionDelegate{
       self.displayLabel.text = "\n" + self.allLog
       self.api.post(Double(value) ?? 0, timestamp)
     }
-    
-//    DispatchQueue.main.asyncAfter(deadline: .now()) {
-//      // your code here
-//
-//    }
+  }
+  
+  func getHealthDataAuth() {
+    if !HKHealthStore.isHealthDataAvailable() {
+      return
+    }
+    let allTypes = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
+    healthStore.requestAuthorization(toShare: allTypes, read: allTypes) { (success, error) in
+      if !success {
+        print("No Authorization")
+      }
+    }
   }
   
   func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {

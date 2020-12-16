@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/yanxiang.zyx/Downloads/heart-beat/AirAber/Heart-Clock.xcodeproj">
    </FileRef>
 </Workspace>

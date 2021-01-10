@@ -57,7 +57,7 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Heart Beat">
+         RemotePath = "/Heart Clock">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40865B381D8E8A660076CEF3"
@@ -76,7 +76,7 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Heart Beat">
+         RemotePath = "/Heart Clock">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40865B381D8E8A660076CEF3"

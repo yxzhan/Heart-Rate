@@ -13,13 +13,14 @@
                 <controller identifier="Flight" hidesWhenLoading="NO" fullBounds="YES" id="i6Z-lo-QB6" customClass="FlightInterfaceController" customModule="Watch_Extension">
                     <items>
                         <label alignment="left" text="BPM" id="7XN-EB-oUb">
-                            <color key="textColor" red="0.98039215686274506" green="0.066666666666666666" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.98134762050000002" green="0.1864786148" blue="0.38004377480000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
-                        <label width="1" height="35" alignment="left" text="..." textAlignment="center" id="AVd-Ob-RAe">
+                        <label width="1" height="26" alignment="left" text="..." textAlignment="center" id="AVd-Ob-RAe">
                             <color key="textColor" red="0.98039215686274506" green="0.066666666666666666" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" type="system" pointSize="36"/>
                         </label>
-                        <label width="1" height="41" alignment="center" text="YYYY-MM-DD HH:mm:ss" textAlignment="center" numberOfLines="2" id="1DR-7d-Sxu">
+                        <label width="1" height="26" alignment="left" text="HH:mm:ss" textAlignment="center" id="O40-8L-3zh"/>
+                        <label width="1" height="21" alignment="center" text="HH:mm:ss" textAlignment="center" numberOfLines="2" id="1DR-7d-Sxu">
                             <fontDescription key="font" type="system" pointSize="16"/>
                         </label>
                         <button width="1" alignment="left" title="Start" id="No2-pe-tuQ">

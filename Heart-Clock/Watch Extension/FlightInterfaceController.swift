@@ -167,16 +167,18 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
       guard let sample = heartRateSamples.first else{return}
       let value = sample.quantity.doubleValue(for: self.heartRateUnit)
       let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+      dateFormatter.dateFormat = "HH:mm:ss"
+//      dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
       let timestamp:String = dateFormatter.string(from: sample.startDate)
       
 //      self.api.post(value, timestamp)
-      
-      self.heartRateLabel.setText(String(UInt16(value)))
-      self.timeLabel.setText(timestamp)
+      DispatchQueue.main.async {
+        self.heartRateLabel.setText(String(UInt16(value)))
+        self.timeLabel.setText(timestamp)
+      }
 
       print("From watch" + timestamp + " | " + String(value))
-      let message = ["value": String(value), "timestamp":String(sample.startDate.timeIntervalSince1970)]
+      let message = ["action":"update", "value": String(value), "timestamp":String(sample.startDate.timeIntervalSince1970)]
       self.wcSession.sendMessage(message, replyHandler: nil) { (error) in
         print(error.localizedDescription)
       }
@@ -202,11 +204,17 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
       if let workout = self.session {
         healthStore.end(workout)
       }
+      self.wcSession.sendMessage(["action":"stop"], replyHandler: nil) { (error) in
+        print(error.localizedDescription)
+      }
     } else {
       //start a new workout
       self.workoutActive = true
       self.startStopBtn.setTitle("Stop")
       startWorkout()
+      self.wcSession.sendMessage(["action":"start"], replyHandler: nil) { (error) in
+        print(error.localizedDescription)
+      }
     }
   }
   

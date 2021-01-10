@@ -16,7 +16,7 @@ npm run client
 ```
 
 ### Run iOS client in Xcode
-Open project in directory `AirAber`
+Open project in directory `Heart-Clock`
 
 ### Development Tool
 1. `Xcode: 12.2`

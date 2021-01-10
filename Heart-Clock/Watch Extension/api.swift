@@ -18,12 +18,12 @@ class Api {
   }
 
 
-  func post(_ val:Double, _ timestamp: String) {
+  func post(_ val:Double, _ timestamp: String, _ path: String = "/heartrate") {
     let order = HRData(val: val, timestamp: timestamp)
     guard let uploadData = try? JSONEncoder().encode(order) else {
       return
     }
-    let url = URL(string: apiHost + "/heartrate")!
+    let url = URL(string: apiHost + path)!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.setValue("application/json", forHTTPHeaderField: "Content-Type")

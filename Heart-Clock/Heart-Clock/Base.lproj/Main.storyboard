@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="i0a-0g-EMc">
             <objects>
-                <viewController id="2Jt-aO-cCC" customClass="ViewController" customModule="AirAber" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2Jt-aO-cCC" customClass="ViewController" customModule="Heart_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ToP-UT-lsH"/>
                         <viewControllerLayoutGuide type="bottom" id="6dF-Ra-NUD"/>
@@ -32,8 +32,22 @@
                                     <action selector="hostBtnTapped" destination="2Jt-aO-cCC" eventType="touchUpInside" id="6tH-ac-GNo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD7-ql-5qI">
-                                <rect key="frame" x="16" y="92" width="288" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TgH-8s-7Z2">
+                                <rect key="frame" x="16" y="102" width="288" height="30"/>
+                                <state key="normal" title="Restart Current Heart TIme"/>
+                                <connections>
+                                    <action selector="ResetBtnTapped" destination="2Jt-aO-cCC" eventType="touchUpInside" id="ERz-fo-bxi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-ak-HZF">
+                                <rect key="frame" x="16" y="152" width="288" height="30"/>
+                                <state key="normal" title="Upload History Data"/>
+                                <connections>
+                                    <action selector="uploadHistoryData" destination="2Jt-aO-cCC" eventType="touchUpInside" id="b5B-Is-8oH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No log!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD7-ql-5qI">
+                                <rect key="frame" x="16" y="232" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Ucd-UQ-avY"/>
                                 </constraints>
@@ -44,15 +58,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="bh7-ak-HZF" firstAttribute="trailing" secondItem="NMt-Wm-4y7" secondAttribute="trailingMargin" id="2la-rk-AMY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TgH-8s-7Z2" secondAttribute="trailing" id="6Cm-8s-tfB"/>
                             <constraint firstAttribute="trailing" secondItem="z0R-8d-dWW" secondAttribute="trailing" id="6Hu-KS-dvM"/>
+                            <constraint firstItem="cD7-ql-5qI" firstAttribute="top" secondItem="bh7-ak-HZF" secondAttribute="bottom" constant="50" id="6Wm-cg-uxW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GiM-2a-VnW" secondAttribute="trailing" id="BZ7-FZ-MCN"/>
                             <constraint firstItem="cD7-ql-5qI" firstAttribute="leading" secondItem="NMt-Wm-4y7" secondAttribute="leadingMargin" id="BqW-TT-sn6"/>
-                            <constraint firstItem="cD7-ql-5qI" firstAttribute="top" secondItem="GiM-2a-VnW" secondAttribute="bottom" constant="10" id="I1M-Ny-jsG"/>
                             <constraint firstItem="z0R-8d-dWW" firstAttribute="leading" secondItem="NMt-Wm-4y7" secondAttribute="leading" id="JuR-Yb-2sg"/>
                             <constraint firstItem="GiM-2a-VnW" firstAttribute="top" secondItem="z0R-8d-dWW" secondAttribute="bottom" constant="10" id="Lt6-ic-TQx"/>
                             <constraint firstItem="cD7-ql-5qI" firstAttribute="trailing" secondItem="NMt-Wm-4y7" secondAttribute="trailingMargin" id="RBe-pc-Y2a"/>
                             <constraint firstItem="GiM-2a-VnW" firstAttribute="leading" secondItem="NMt-Wm-4y7" secondAttribute="leadingMargin" id="TMQ-dm-TRj"/>
+                            <constraint firstItem="bh7-ak-HZF" firstAttribute="leading" secondItem="NMt-Wm-4y7" secondAttribute="leadingMargin" id="TT8-vL-fec"/>
+                            <constraint firstItem="bh7-ak-HZF" firstAttribute="top" secondItem="TgH-8s-7Z2" secondAttribute="bottom" constant="20" id="Upe-dA-mxV"/>
+                            <constraint firstItem="TgH-8s-7Z2" firstAttribute="top" secondItem="GiM-2a-VnW" secondAttribute="bottom" constant="20" id="XWJ-Bj-Un8"/>
                             <constraint firstItem="z0R-8d-dWW" firstAttribute="top" secondItem="ToP-UT-lsH" secondAttribute="bottom" constant="8" symbolic="YES" id="dzY-mx-PtG"/>
+                            <constraint firstItem="TgH-8s-7Z2" firstAttribute="leading" secondItem="NMt-Wm-4y7" secondAttribute="leadingMargin" id="k6A-KJ-uV7"/>
                         </constraints>
                     </view>
                     <connections>

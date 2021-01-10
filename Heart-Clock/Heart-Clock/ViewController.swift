@@ -42,23 +42,41 @@ class ViewController: UIViewController, WCSessionDelegate{
   var wcSession : WCSession! = nil
   var allLog:String = ""
   let healthStore = HKHealthStore()
+  let defaults = UserDefaults.standard
 
   override func viewDidLoad() {
     getHealthDataAuth()
     wcSession = WCSession.default
     wcSession.delegate = self
     wcSession.activate()
+    if let str = defaults.string(forKey: "host") {
+      self.api.apiHost = str
+    }
     hostInput.text = api.apiHost
+
   }
   
   @IBAction func hostBtnTapped() {
     let newHost:String = self.hostInput.text ?? api.apiHost
     self.api.apiHost = newHost
+    self.defaults.set(newHost, forKey: "host")
+
   }
   
-
+  @IBAction func ResetBtnTapped() {
+    self.api.post(0, "", "/resetclock")
+  }
+  
+  @IBAction func uploadHistoryData() {
+//    self.api.post(Double(value) ?? 0, timestamp)
+  }
   
   func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    let action = message["action"] as! String
+    if action == "start" || action == "stop"{
+      self.api.post(0, "", "/" + action + "workout")
+      return
+    }
     let value = message["value"] as! String
     let timestamp = message["timestamp"] as! String
     let dateFormatter = DateFormatter()

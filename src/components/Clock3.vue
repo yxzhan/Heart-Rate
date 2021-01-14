@@ -14,6 +14,8 @@
     <span class="analog-clock__hand -seconds" :style="seconds"></span>
     <span class="analog-clock__hand -minutes" :style="minutes"></span>
     <span class="analog-clock__hand -hours" :style="hours"></span>
+    <span class="analog-clock__hand -alarm" :style="alarm"></span>
+
   </figure>
 </div>
 </template>
@@ -24,6 +26,7 @@ export default {
   name: 'Clock3',
   props: { 
     time: Number, 
+    alarmtime: String,
     digit:{
       default: false,
       type: Boolean
@@ -33,10 +36,13 @@ export default {
     return {
       minute: 0, 
       tick: 0, 
-      rotation: { hours: 0, minutes: 0, seconds: 0 }
+      rotation: { hours: 0, minutes: 0, seconds: 0, alarm: 0 }
     }
   },
   computed: {
+    alarm() {
+      return { transform: `translate3d(-50%, 0, 0) rotate(${this.rotation.alarm}deg)` }
+    },
     hours() {
       return { transform: `translate3d(-50%, 0, 0) rotate(${this.rotation.hours}deg)` }
     },
@@ -45,7 +51,7 @@ export default {
     },
     seconds() {
       return { transform: `translate3d(-50%, 0, 0) rotate(${this.rotation.seconds}deg)` }
-    }
+    },
   },
   watch: {
     tick() {
@@ -55,10 +61,17 @@ export default {
     minute(to, from) {
       if (from === to) return;
       this.rotation.hours += 0.5
+      if (this.rotation.hours % 360 == this.rotation.alarm % 360) {
+        this.$emit('alarm')
+      }
+    },
+    alarmtime () {
+      this.setAlarm()
     },
     time(to, from) {
       if (from == 0) {
         this.initTime()
+        return
       }
       let date = new Date(to)
       this.tick = date.getSeconds()
@@ -66,13 +79,19 @@ export default {
     }
   },
   mounted() {
-    
+    this.setAlarm()
   },
   methods: {
+    setAlarm () {
+      if (!this.alarmtime) return
+      let [h, m] = this.alarmtime.split(':')
+      this.rotation.alarm = (h * 30) + (m * 0.5) + 0.5
+    },
     initTime () {
       let date = new Date(this.time)
       let [h, m, s] = [date.getHours(), date.getMinutes(), date.getSeconds()]
       this.rotation = {
+        alarm: this.rotation.alarm,
         hours: (h * 30) + (m * 0.5),
         minutes: (m * 6) + (s * 0.1),
         seconds: s * 6
@@ -90,8 +109,8 @@ export default {
 }
 .analog-clock {
   display: inline-block;
-  width: 21vh;
-  height: 21vh;
+  width: 60vw;
+  height: 60vw;
   // width: 240px;
   // height: 240px;
   position: relative;
@@ -180,6 +199,15 @@ export default {
       height: calc(100% / 3);
       width: 3px;
       border-radius: 3px;
+      // transition: transform 100ms linear;
+    }
+    
+    &.-alarm {
+      height: 30%;
+      width: 2px;
+      border-radius: 3px;
+      background-color: #f7e78f;
+
       // transition: transform 100ms linear;
     }
 

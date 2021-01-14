@@ -53,15 +53,6 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
 
   override func awake(withContext context: Any?) {
     super.awake(withContext: context)
-//
-//    let hb = HealthBeat()
-//    hb.handler = {(val:Double, timestamp:String) -> () in
-//      print(timestamp)
-//      print(val)
-//      self.timeLabel.setText(timestamp)
-//      self.heartRateLabel.setText(String(val))
-//    }
-//    hb.setupHealthKit()
   }
   
   override func willActivate() {
@@ -141,6 +132,10 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
     } catch {
       fatalError("Unable to create the workout session!")
     }
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm:ss"
+    let timestamp:String = dateFormatter.string(from: Date())
+    self.timeLabel.setText(timestamp)
     healthStore.start(self.session!)
   }
   
@@ -174,7 +169,7 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
 //      self.api.post(value, timestamp)
       DispatchQueue.main.async {
         self.heartRateLabel.setText(String(UInt16(value)))
-        self.timeLabel.setText(timestamp)
+//        self.timeLabel.setText(timestamp)
       }
 
       print("From watch" + timestamp + " | " + String(value))

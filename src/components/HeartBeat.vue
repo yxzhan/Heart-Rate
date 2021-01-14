@@ -1,63 +1,105 @@
 <template>
 
   <div class="heart-beat">
-    <div>Current Heart Rate <b>{{heartBeat}}</b></div>
-    <div class="clock-block">
-      <div class="title">Heart Rate Time</div>
-      <div class="digit-clock"><b>{{heartTimeString}}</b></div>
-      <!-- <clock :time="heartTimeString" color="#FFFFFF" bg="#4AB7BD" size="300px"></clock> -->
-      <Clock3 :time="heartTimeNum"/>
 
-    </div>
+    <div>Heart Rate <b>{{heartBeat}}</b> BPM</div>
+
     <div class="clock-block">
-      <div class="title">Now</div>
-      <div class="digit-clock"><b>{{now}}</b></div>
-      <!-- <clock size="300px"></clock> -->
-      <Clock3 :time="nowNum"/>
+      <Clock3 :time="heartTimeNum" :alarmtime="alarmtime" @alarm="playAlarm"/>
+      <!-- <div class="digit-clock"><b>{{now}}</b></div> -->
+      <!-- <div class="title">Heart Rate Time</div> -->
+      <div class="digit-clock"><b>{{heartTimeString}}</b></div>
     </div>
-    <AlarmClock :time="heartTimeNum"/>
-    <audio id="myAudio" >
-      <source :src="audioSrc" type="audio/mpeg">
+
+    <div>
+      <button id="show-modal" @click="showModal = true">Settings</button>
+    </div>
+    <Modal v-if="showModal">
+      <!-- <h2 slot="header">Settings</h2> -->
+      <div slot="body">
+        <VueClockPicker 
+          v-show="alarmEnable"
+          label="Alarm Clock"
+          v-model="alarmtime"
+          :placeholder="'Set AlarmClock'" 
+          v-on:timeset="setAlarm" />
+        <div class="setting-btns">
+          <button @click="alarmEnable = !alarmEnable">{{alarmEnable ? 'Turn off Alarm' : 'Turn on Alarm'}}</button>
+          <button @click="muted = !muted">{{muted ? 'Turn on Sound' : 'Mute'}}</button>
+          <!-- <button v-if="alarming" @click="stopAlarm">stop alarm</button> -->
+        </div>
+      </div>
+      <div slot="footer">
+        <button class="modal-default-button" @click="showModal = false">Close</button>
+      </div>
+    </Modal>
+    <Modal v-if="alarming">
+      <div slot="body">
+        <h1 slot="header">Wake up!!!</h1>
+        <div class="setting-btns">
+          <button @click="stopAlarm">stop alarm</button>
+        </div>
+      </div>
+      <div slot="footer"></div>
+    </Modal>
+
+    
+    <audio id="tickAudio" >
+      <source src="drum.mp3" type="audio/mpeg">
     </audio>
-    <!-- <Chart ref="chartComponent"/> -->
-    <!-- <ul>
-      <li v-for="(item, index) in dataList" :key="index">
-            <span>Heart Rate: <b>{{item.val}}</b>bpm</span>
-            <span>Record Time: <b>{{item.timestamp}}</b></span>
-            <span>Fetch Time: <b>{{item.now}}</b></span>
-        </li>
-    </ul> -->
+    <audio id="alarmAudio" >
+      <source src="test.mp3" type="audio/mpeg">
+    </audio>
   </div>
 </template>
 
 <script>
-import Chart from './Chart.vue'
+// import Chart from './Chart.vue'
+import Modal from './Modal.vue'
 import Clock3 from './Clock3.vue'
-import AlarmClock from './AlarmClock.vue'
+// import AlarmClock from './AlarmClock.vue'
+import VueClockPicker from '@pencilpix/vue2-clock-picker'
+import '@pencilpix/vue2-clock-picker/dist/vue2-clock-picker.min.css'
 
 import moment from 'moment'
 import io from'socket.io-client'
+const lsKey = 'alarmClocks'
 
 export default {
   name: 'HeartBeat',
   data: function() {
     return {
-      alarmClocks:[],
+      showModal:false,
       socket: null,
+      alarmtime: '',
       now: '',
       nowNum: 0,
-      heartTimeString: '',
-      heartTime: null,
       heartTimeNum: 0,
       heartBeat: 60,
-      dataList: [],
-      audioPlayer: null,
-      audioSrc: ''
+      tickPlayer: null,
+      alarmPlayer: null,
+      alarming: false,
+      audioSrc: '',
+      muted: true,
+      alarmEnable: true,
+    }
+  },
+  watch: {
+    muted (val) {
+      this.tickPlayer.muted = val
+      this.alarmPlayer.muted = val
+    }
+  },
+  computed: {
+    heartTimeString() {
+      return this.getTimeString(new Date(this.heartTimeNum))
     }
   },
   mounted: function() {
-    this.audioPlayer = document.getElementById("myAudio")
-    // this.audioPlayer.muted = true
+    this.tickPlayer = document.getElementById("tickAudio")
+    this.alarmPlayer = document.getElementById("alarmAudio")
+    this.tickPlayer.muted = this.muted
+    this.alarmPlayer.muted = this.muted
     this.startWs()
     this.updateNowTime()
     setInterval(this.updateNowTime, 1000)
@@ -65,60 +107,59 @@ export default {
   methods: {
     startWs () {
       this.socket = io()
-      this.socket.on('message', this.onMessage)
-      this.socket.on('history', data => {
-        data = JSON.parse(data)
-        this.initHeartTime(data)
-        this.$refs.chartComponent && this.$refs.chartComponent.initChart(data)
-      })
+      this.socket.on('heartrate', this.onHeartrate)
+      this.socket.on('hearttime', this.onHearttime)
+      this.socket.on('alarmchange', this.onAlarmChanged)
     },
-    onMessage(data) {
+    onAlarmChanged(data) {
+      console.log(data)
+      this.alarmtime = data
+    },
+    onHearttime(data) {
+      this.heartTimeNum = data
+      this.playTickSound()
+    },
+    onHeartrate(data) {
       var data = JSON.parse(data)
-      this.$refs.chartComponent && this.$refs.chartComponent.onRecieveData(data)
+      // this.$refs.chartComponent && this.$refs.chartComponent.onRecieveData(data)
       this.heartBeat = parseInt(data.val)
-      // data.now = this.getTimeString(new Date())
-      // data.timestamp = this.getTimeString(new Date(parseFloat(data.timestamp) * 1000))
-      // this.dataList.push(data)
     },
-    playBeatSound() {
-      this.audioSrc = 'drum.mp3'
-      this.audioPlayer.pause();
-      this.audioPlayer.currentTime = 0
-      this.audioPlayer.play()
+    playTickSound() {
+      this.tickPlayer.currentTime = 0
+      this.tickPlayer.play()
     },
-    updateHeartTime(second = 1) {
-      // this.playBeatSound()
-      this.heartTime.setSeconds(this.heartTime.getSeconds() + second)
-      this.heartTimeString = this.getTimeString(this.heartTime)
-      this.heartTimeNum = this.heartTime.getTime()
-      setTimeout(this.updateHeartTime, this.getHeartSecond())
+    playAlarm() {
+      if (!this.alarmEnable) return
+      this.tickPlayer.muted = true
+      this.alarmPlayer.muted = false
+      // this.alarmPlayer.playbackRate = 2
+      this.alarmPlayer.currentTime = 0
+      this.alarmPlayer.play()
+      this.alarming = true
+    },
+    stopAlarm() {
+      this.alarmPlayer.pause()
+      this.tickPlayer.muted = false
+      this.alarming = false
     },
     updateNowTime() {
       let d = new Date()
       this.now = this.getTimeString(d)
       this.nowNum= d.getTime()
     },
-    getHeartSecond() {
-      return 60 / this.heartBeat * 1000
-    },
     getTimeString(d){
       return moment(d).format('HH:mm:ss')
     },
-    initHeartTime(data) {
-      if (data.length == 0) return
-      this.heartBeat = data[data.length - 1].val
-      var gap = (data.map(v => v.val).reduce((a, b) => a + b)) / 15
-      this.heartTime = new Date((parseFloat(data[0].timestamp) + gap) * 1000)
-      this.heartTimeString = this.getTimeString(this.heartTime)
-      this.heartTimeNum = this.heartTime.getTime()
-      this.updateHeartTime(0)
+    setAlarm (timeStr) {
+      this.alarmtime = timeStr
+      this.socket.emit('setalarm', timeStr)
     }
   },
   components: {
-    // Clock,
-    Chart,
+    // Chart,
     Clock3,
-    AlarmClock,
+    VueClockPicker,
+    Modal
   }
 }
 </script>
@@ -126,7 +167,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .heart-beat {
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: auto;
 }
 .title {
@@ -134,7 +175,7 @@ export default {
 }
 .clock-block {
   display: inline-block;
-  margin: 30px 20px;
+  margin: 20px;
 }
 
 .clock-block div {
@@ -169,5 +210,28 @@ ul li span {
 }
 ul li span b{
   margin: 0 5px;
+}
+.setting-btns {
+  margin: 20px 0;
+}
+button {
+  display: block;
+  padding: 0 1rem;
+  margin: auto;
+  background: transparent;
+  border: 0;
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 32px;
+  /* display: inline-block; */
+  cursor: pointer;
+  color: rgb(164, 139, 209);
+}
+button:hover {
+  background-color: #f5f5f5;
+}
+button:active {
+    background-color: #e6e6e6;
 }
 </style>

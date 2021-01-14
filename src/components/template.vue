@@ -1,18 +1,15 @@
 
 <template>
 
-  <div class="alarm-clock">
-    <vue-clock-picker></vue-clock-picker>
+  <div class="">
 
   </div>
 </template>
 
 <script>
-import VueClockPicker from '@pencilpix/vue2-clock-picker'
-import '@pencilpix/vue2-clock-picker/dist/vue2-clock-picker.min.css'
 
 export default {
-  name: 'AlarmClock',
+  name: '',
   data: function() {
     return {
     }

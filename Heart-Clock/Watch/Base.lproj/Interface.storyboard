@@ -19,10 +19,16 @@
                             <color key="textColor" red="0.98039215686274506" green="0.066666666666666666" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="font" type="system" pointSize="36"/>
                         </label>
-                        <label width="1" height="26" alignment="left" text="HH:mm:ss" textAlignment="center" id="O40-8L-3zh"/>
-                        <label width="1" height="21" alignment="center" text="HH:mm:ss" textAlignment="center" numberOfLines="2" id="1DR-7d-Sxu">
+                        <label width="136" height="21" alignment="center" text="hh:mm:ss" textAlignment="center" numberOfLines="2" id="1DR-7d-Sxu">
+                            <color key="textColor" white="1" alpha="0.30120933219178081" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" type="system" pointSize="16"/>
                         </label>
+                        <dateLabel width="136" alignment="left" textAlignment="center" format=" hh:mm:ss" id="Nzf-Xj-omy">
+                            <fontDescription key="font" type="system" pointSize="16"/>
+                            <date key="previewedDate" timeIntervalSinceReferenceDate="431932140">
+                                <!--2014-09-09 05:09:00 +0000-->
+                            </date>
+                        </dateLabel>
                         <button width="1" alignment="left" title="Start" id="No2-pe-tuQ">
                             <connections>
                                 <action selector="startBtnTapped" destination="i6Z-lo-QB6" id="0yw-d0-Tmc"/>

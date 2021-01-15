@@ -6,9 +6,9 @@
 
     <div class="clock-block">
       <Clock3 :time="heartTimeNum" :alarmtime="alarmtime" @alarm="playAlarm"/>
-      <!-- <div class="digit-clock"><b>{{now}}</b></div> -->
       <!-- <div class="title">Heart Rate Time</div> -->
       <div class="digit-clock"><b>{{heartTimeString}}</b></div>
+      <div class="digit-clock"><b>{{now}}</b></div>
     </div>
 
     <div>
@@ -43,7 +43,10 @@
       <div slot="footer"></div>
     </Modal>
 
-    
+    <Mqtt :alarmtime="alarmtime"
+          @heartclockrate="onHeartrate" 
+          @heartclocktime="onHearttime" 
+          @heartclockalarm="onAlarmChanged" />
     <audio id="tickAudio" >
       <source src="drum.mp3" type="audio/mpeg">
     </audio>
@@ -55,6 +58,7 @@
 
 <script>
 // import Chart from './Chart.vue'
+import Mqtt from './Mqtt.vue'
 import Modal from './Modal.vue'
 import Clock3 from './Clock3.vue'
 // import AlarmClock from './AlarmClock.vue'
@@ -62,8 +66,6 @@ import VueClockPicker from '@pencilpix/vue2-clock-picker'
 import '@pencilpix/vue2-clock-picker/dist/vue2-clock-picker.min.css'
 
 import moment from 'moment'
-import io from'socket.io-client'
-const lsKey = 'alarmClocks'
 
 export default {
   name: 'HeartBeat',
@@ -100,28 +102,20 @@ export default {
     this.alarmPlayer = document.getElementById("alarmAudio")
     this.tickPlayer.muted = this.muted
     this.alarmPlayer.muted = this.muted
-    this.startWs()
     this.updateNowTime()
     setInterval(this.updateNowTime, 1000)
   },
   methods: {
-    startWs () {
-      this.socket = io()
-      this.socket.on('heartrate', this.onHeartrate)
-      this.socket.on('hearttime', this.onHearttime)
-      this.socket.on('alarmchange', this.onAlarmChanged)
-    },
     onAlarmChanged(data) {
       console.log(data)
       this.alarmtime = data
     },
     onHearttime(data) {
-      this.heartTimeNum = data
+      this.heartTimeNum = parseInt(data)
       this.playTickSound()
     },
     onHeartrate(data) {
       var data = JSON.parse(data)
-      // this.$refs.chartComponent && this.$refs.chartComponent.onRecieveData(data)
       this.heartBeat = parseInt(data.val)
     },
     playTickSound() {
@@ -152,14 +146,15 @@ export default {
     },
     setAlarm (timeStr) {
       this.alarmtime = timeStr
-      this.socket.emit('setalarm', timeStr)
     }
   },
   components: {
     // Chart,
     Clock3,
     VueClockPicker,
-    Modal
+    Modal,
+    Mqtt    
+
   }
 }
 </script>

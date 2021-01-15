@@ -1,31 +1,15 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
 var clock = require('./clock')
-clock.setSocket(io)
-
-// websocket server
-io.on('connection', function(socket){
-  console.log('A new ws client,' + socket.request.headers['user-agent'])
-  console.log('Total sockect: ' + socket.client.conn.server.clientsCount)
-
-  clock.getAlarm() && io.emit('alarmchange', clock.getAlarm())
-
-  socket.on('setalarm', function (data) {
-    io.emit('alarmchange', data)
-    clock.setAlarm(data)
-  })
-})
 
 app.use(express.json())
 
 app.post('/heartrate', function (req, res) {
   console.log(req.body)
   clock.update(req.body)
-  io.emit('heartrate', JSON.stringify(req.body))
   res.set("Connection", "close");
   res.end(`data saved${JSON.stringify(req.body)}`);
 })

@@ -32,6 +32,7 @@ import UIKit
 import WatchConnectivity
 import Foundation
 import HealthKit
+//import CocoaMQTT
 
 class ViewController: UIViewController, WCSessionDelegate{
   
@@ -56,6 +57,21 @@ class ViewController: UIViewController, WCSessionDelegate{
 
   }
   
+//  func setUpMQTT() {
+//    let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
+//    let mqtt = CocoaMQTT(clientID: clientID, host: "localhost", port: 1883)
+//    mqtt.username = "test"
+//    mqtt.password = "public"
+//    mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
+//    mqtt.keepAlive = 60
+//    mqtt.delegate = self
+//    mqtt.connect()
+//  }
+//
+//  func didReceiveMessage (mqtt, message, id) {
+//
+//  }
+//
   @IBAction func hostBtnTapped() {
     let newHost:String = self.hostInput.text ?? api.apiHost
     self.api.apiHost = newHost

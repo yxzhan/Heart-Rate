@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 i/dist
-
+Heart-Clock/Pods
 
 # local env files
 .env.local

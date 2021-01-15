@@ -1,0 +1,1 @@
+docker run -p 8000:8000 -p 8888:8080 -p 1883:1883 hivemq/hivemq4

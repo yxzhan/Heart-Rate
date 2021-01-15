@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB5672CA4A7EDA6C5C3985F /* Pods_Watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE29A422F66844BC9F6251E7 /* Pods_Watch.framework */; };
+		39A2769E5E8A44D9A84805A0 /* Pods_Heart_Clock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DF4F653891269BAB20D6E2 /* Pods_Heart_Clock.framework */; };
 		40865B3D1D8E8A660076CEF3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40865B3B1D8E8A660076CEF3 /* Interface.storyboard */; };
 		40865B3F1D8E8A660076CEF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40865B3E1D8E8A660076CEF3 /* Assets.xcassets */; };
 		40865B461D8E8A670076CEF3 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 40865B451D8E8A670076CEF3 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -14,6 +16,7 @@
 		40865B4F1D8E8A670076CEF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40865B4E1D8E8A670076CEF3 /* Assets.xcassets */; };
 		40865B531D8E8A670076CEF3 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 40865B391D8E8A660076CEF3 /* Watch.app */; };
 		40865B5E1D8E99420076CEF3 /* FlightInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40865B5D1D8E99420076CEF3 /* FlightInterfaceController.swift */; };
+		5052903EFF8C2B776CA5622F /* Pods_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BA20463C00C69BD8292C65C /* Pods_Watch_Extension.framework */; };
 		7B8FA23D1B72275A00B1E765 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8FA23C1B72275A00B1E765 /* AppDelegate.swift */; };
 		7B8FA23F1B72275A00B1E765 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8FA23E1B72275A00B1E765 /* ViewController.swift */; };
 		7B8FA2421B72275A00B1E765 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8FA2401B72275A00B1E765 /* Main.storyboard */; };
@@ -69,6 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		160728AFFBDC4F5A909C21AE /* Pods-Watch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.release.xcconfig"; path = "Target Support Files/Pods-Watch/Pods-Watch.release.xcconfig"; sourceTree = "<group>"; };
+		2BA20463C00C69BD8292C65C /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40113A8D1F5A53680089A5C1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		40865B391D8E8A660076CEF3 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40865B3C1D8E8A660076CEF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -79,6 +84,9 @@
 		40865B4E1D8E8A670076CEF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40865B501D8E8A670076CEF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40865B5D1D8E99420076CEF3 /* FlightInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightInterfaceController.swift; sourceTree = "<group>"; };
+		6CD4BBA900977F8A19324435 /* Pods-Heart-Clock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Heart-Clock.release.xcconfig"; path = "Target Support Files/Pods-Heart-Clock/Pods-Heart-Clock.release.xcconfig"; sourceTree = "<group>"; };
+		6D4555D3EA05D64FBE41E995 /* Pods-Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.debug.xcconfig"; path = "Target Support Files/Pods-Watch Extension/Pods-Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		6E872D969F36B6DBAB45F7F4 /* Pods-Heart-Clock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Heart-Clock.debug.xcconfig"; path = "Target Support Files/Pods-Heart-Clock/Pods-Heart-Clock.debug.xcconfig"; sourceTree = "<group>"; };
 		7B8FA2391B72275A00B1E765 /* Heart-Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heart-Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8FA23C1B72275A00B1E765 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8FA23E1B72275A00B1E765 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +99,10 @@
 		8397A1AF25890CE500AF0F32 /* api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
 		83AA3D18258188D000044497 /* Heart-Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Heart-Clock.entitlements"; sourceTree = "<group>"; };
 		83AA3D19258188D000044497 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		9AE5D3487D151DF18B45428A /* Pods-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.release.xcconfig"; path = "Target Support Files/Pods-Watch Extension/Pods-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		E2DF4F653891269BAB20D6E2 /* Pods_Heart_Clock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Heart_Clock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE29A422F66844BC9F6251E7 /* Pods_Watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFF5A3618372CB865B5751D5 /* Pods-Watch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch.debug.xcconfig"; path = "Target Support Files/Pods-Watch/Pods-Watch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +111,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				831BBD8D257AA8A4007F0F93 /* HealthKit.framework in Frameworks */,
+				5052903EFF8C2B776CA5622F /* Pods_Watch_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44FC006ED948A1BE322EFBB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DB5672CA4A7EDA6C5C3985F /* Pods_Watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83AA3D1A258188D000044497 /* HealthKit.framework in Frameworks */,
+				39A2769E5E8A44D9A84805A0 /* Pods_Heart_Clock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +168,7 @@
 				40865B491D8E8A670076CEF3 /* Watch Extension */,
 				7B8FA23A1B72275A00B1E765 /* Products */,
 				831BBD8B257AA8A4007F0F93 /* Frameworks */,
+				FCCDB94B2BADF3C411A007A5 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -179,8 +202,25 @@
 			children = (
 				83AA3D19258188D000044497 /* HealthKit.framework */,
 				831BBD8C257AA8A4007F0F93 /* HealthKit.framework */,
+				E2DF4F653891269BAB20D6E2 /* Pods_Heart_Clock.framework */,
+				EE29A422F66844BC9F6251E7 /* Pods_Watch.framework */,
+				2BA20463C00C69BD8292C65C /* Pods_Watch_Extension.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FCCDB94B2BADF3C411A007A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E872D969F36B6DBAB45F7F4 /* Pods-Heart-Clock.debug.xcconfig */,
+				6CD4BBA900977F8A19324435 /* Pods-Heart-Clock.release.xcconfig */,
+				FFF5A3618372CB865B5751D5 /* Pods-Watch.debug.xcconfig */,
+				160728AFFBDC4F5A909C21AE /* Pods-Watch.release.xcconfig */,
+				6D4555D3EA05D64FBE41E995 /* Pods-Watch Extension.debug.xcconfig */,
+				9AE5D3487D151DF18B45428A /* Pods-Watch Extension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,8 +230,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40865B581D8E8A670076CEF3 /* Build configuration list for PBXNativeTarget "Watch" */;
 			buildPhases = (
+				903AD08CD3A609BAB4D886F4 /* [CP] Check Pods Manifest.lock */,
 				40865B371D8E8A660076CEF3 /* Resources */,
 				40865B571D8E8A670076CEF3 /* Embed App Extensions */,
+				44FC006ED948A1BE322EFBB9 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,6 +249,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40865B541D8E8A670076CEF3 /* Build configuration list for PBXNativeTarget "Watch Extension" */;
 			buildPhases = (
+				F8FD82124E72B6B22288E3BB /* [CP] Check Pods Manifest.lock */,
 				40865B411D8E8A670076CEF3 /* Sources */,
 				40865B421D8E8A670076CEF3 /* Frameworks */,
 				40865B431D8E8A670076CEF3 /* Resources */,
@@ -224,10 +267,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7B8FA24B1B72275A00B1E765 /* Build configuration list for PBXNativeTarget "Heart-Clock" */;
 			buildPhases = (
+				2DCB8B47EE82CC915547FA56 /* [CP] Check Pods Manifest.lock */,
 				7B8FA2351B72275A00B1E765 /* Sources */,
 				7B8FA2361B72275A00B1E765 /* Frameworks */,
 				7B8FA2371B72275A00B1E765 /* Resources */,
 				7B8FA2721B72277000B1E765 /* Embed Watch Content */,
+				F29406ABD3DF05A3556EFF7E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,8 +280,6 @@
 				40865B521D8E8A670076CEF3 /* PBXTargetDependency */,
 			);
 			name = "Heart-Clock";
-			packageProductDependencies = (
-			);
 			productName = AirAber;
 			productReference = 7B8FA2391B72275A00B1E765 /* Heart-Clock.app */;
 			productType = "com.apple.product-type.application";
@@ -280,8 +323,6 @@
 				Base,
 			);
 			mainGroup = 7B8FA2301B72275A00B1E765;
-			packageReferences = (
-			);
 			productRefGroup = 7B8FA23A1B72275A00B1E765 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +362,95 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DCB8B47EE82CC915547FA56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Heart-Clock-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		903AD08CD3A609BAB4D886F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Watch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F29406ABD3DF05A3556EFF7E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Heart-Clock/Pods-Heart-Clock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Heart-Clock/Pods-Heart-Clock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8FD82124E72B6B22288E3BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Watch Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		40865B411D8E8A670076CEF3 /* Sources */ = {
@@ -382,6 +512,7 @@
 /* Begin XCBuildConfiguration section */
 		40865B551D8E8A670076CEF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D4555D3EA05D64FBE41E995 /* Pods-Watch Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -408,6 +539,7 @@
 		};
 		40865B561D8E8A670076CEF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AE5D3487D151DF18B45428A /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -433,6 +565,7 @@
 		};
 		40865B591D8E8A670076CEF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFF5A3618372CB865B5751D5 /* Pods-Watch.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -458,6 +591,7 @@
 		};
 		40865B5A1D8E8A670076CEF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 160728AFFBDC4F5A909C21AE /* Pods-Watch.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -580,6 +714,7 @@
 		};
 		7B8FA24C1B72275A00B1E765 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E872D969F36B6DBAB45F7F4 /* Pods-Heart-Clock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Heart-Clock/Heart-Clock.entitlements";
@@ -598,6 +733,7 @@
 		};
 		7B8FA24D1B72275A00B1E765 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CD4BBA900977F8A19324435 /* Pods-Heart-Clock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Heart-Clock/Heart-Clock.entitlements";

@@ -1,8 +1,8 @@
 var mqtt = require('mqtt')
-var client  = mqtt.connect('mqtt://localhost')
+var client  = mqtt.connect('mqtt://broker.mqttdashboard.com')
  
 client.on('connect', function () {
-  client.subscribe('heart/timeupdate', function (err) {
+  client.subscribe('testtopic/1', function (err) {
     if (err) { console.log(err)}
 
   })

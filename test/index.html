@@ -1,0 +1,87 @@
+<html>
+<head>
+  <title>test Ws mqtt.js</title>
+</head>
+<body>
+  <div><h1>hehehehehee</h1>
+    <div id="output"></div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+
+<!-- <script src="https://unpkg.com/mqtt@4.2.6/dist/mqtt.min.js"></script> -->
+<script>
+  
+  var output
+  function init()
+  {
+    output = document.getElementById("output");
+
+    testWebSocket();
+  }
+
+
+  function testWebSocket()
+  {
+    // Create a client instance
+    client = new Paho.MQTT.Client('192.168.1.153', 8000, "clientId" + Date.now()) ;
+
+    // set callback handlers
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+
+    // connect the client
+    client.connect({onSuccess:onConnect});
+
+
+    // called when the client connects
+    function onConnect() {
+      // Once a connection has been made, make a subscription and send a message.
+      console.log("onConnect");
+      writeToScreen("onConnect");
+      
+      client.subscribe("World");
+      message = new Paho.MQTT.Message("Hello");
+      message.destinationName = "World";
+      client.send(message);
+    }
+
+    // called when the client loses its connection
+    function onConnectionLost(responseObject) {
+      if (responseObject.errorCode !== 0) {
+        console.log("onConnectionLost:"+responseObject.errorMessage);
+        writeToScreen("onConnectionLost:"+responseObject.errorMessage);
+
+      }
+    }
+
+    // called when a message arrives
+    function onMessageArrived(message) {
+      console.log("onMessageArrived:"+message.payloadString);
+      writeToScreen("onMessageArrived:"+message.payloadString);
+      
+    }
+    // var client = mqtt.connect('ws://localhost:8000/mqtt') // you add a ws:// url here
+    // client.subscribe("mqtt/demo")
+
+    // client.on("message", function (topic, payload) {
+    //   // alert([topic, payload].join(": "))
+    //   writeToScreen([topic, payload].join(": "));
+    //   // client.end()
+    // })
+
+    // client.publish("mqtt/demo", "hello world!")
+  }
+
+  function writeToScreen(message)
+  {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.appendChild(pre);
+  }
+
+  window.addEventListener("load", init, false);
+
+</script>
+</html>

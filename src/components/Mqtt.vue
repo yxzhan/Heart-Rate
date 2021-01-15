@@ -2,12 +2,13 @@
 <template>
 
   <div class="Mqtt">
+    <!-- <div>{{errorMsg}}</div> -->
   </div>
 </template>
 
 <script>
 
-import mqtt from 'mqtt'
+import Paho from 'paho-mqtt'
 
 export default {
   name: 'Mqtt',
@@ -16,13 +17,17 @@ export default {
   },
   watch:{
     alarmtime(val) {
-      this.client.publish('heartclock/alarm', val)
+      // this.client.publish('heartclock/alarm', val)
+      var message = new Paho.Message(val)
+      message.destinationName = 'heartclock/alarm'
+      this.client.send(message)
     }
   },
   data() {
     return {
+      errorMsg: '',
       connection: {
-        host: '',
+        host: '192.168.1.153',
         port: 8000,
         endpoint: '/mqtt',
         clean: true, // Reserved session
@@ -55,34 +60,46 @@ export default {
     }
   },
   mounted: function() {
-    const { host, port, endpoint, ...options } = this.connection
-    const connectUrl = `ws://${host}:${port}${endpoint}`
-    try {
-      this.client = mqtt.connect(connectUrl, options)
-    } catch (error) {
-      console.log('mqtt.connect error', error)
-    }
-    this.client.on('connect', () => {
-      console.log('Connection succeeded!')
-      this.client.subscribe('heartclock/rate')
-      this.client.subscribe('heartclock/time')
-      this.client.subscribe('heartclock/alarm')
-
-      this.client.publish('heartclock/newclient', JSON.stringify({
-        ua: navigator.userAgent,
-        id: this.connection.clientId
-      }))
-    })
-    this.client.on('error', error => {
-      console.log('Connection failed', error)
-    })
-    this.client.on('message', (topic, message) => {
-      this.receiveNews = this.receiveNews.concat(message)
-      // console.log(`Received message ${message} from topic ${topic}`)
-      this.$emit(topic.replace('/', ''), message.toString())
-    })
+    this.initWs()
   },
   methods: {
+    initWs() {
+      const { host, port, clientId, endpoint, ...options } = this.connection
+      try {
+        this.client = new Paho.Client(host, port, clientId)
+      } catch (error) {
+        this.errorMsg += error + '\n'
+        console.log('mqtt.connect error', error)
+      }
+
+      this.client.connect({onSuccess: () => {
+        console.log('Connection succeeded!')
+        this.client.subscribe('heartclock/rate')
+        this.client.subscribe('heartclock/time')
+        this.client.subscribe('heartclock/alarm')
+
+
+        var message = new Paho.Message(JSON.stringify({
+          ua: navigator.userAgent,
+          id: this.connection.clientId
+        }))
+        message.destinationName = 'heartclock/newclient'
+        this.client.send(message)
+      }})
+
+      this.client.onConnectionLost = (responseObject) => {
+        if (responseObject.errorCode !== 0) {
+          console.log("onConnectionLost:"+responseObject.errorMessage);
+        }
+      }
+
+      this.client.onMessageArrived = (message) => {
+        this.receiveNews = this.receiveNews.concat(message.payloadString)
+        console.log("onMessageArrived:"+message.payloadString)
+        this.$emit(message.topic.replace('/', ''), message.payloadString)
+
+      }
+    }
   }
 }
 </script>

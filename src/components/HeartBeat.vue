@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     onAlarmChanged(data) {
-      console.log(data)
+      // console.log(data)
       this.alarmtime = data
     },
     onHearttime(data) {
@@ -124,8 +124,9 @@ export default {
     },
     playAlarm() {
       if (!this.alarmEnable) return
-      this.tickPlayer.muted = true
-      this.alarmPlayer.muted = false
+      if (!this.muted) {
+        this.alarmPlayer.muted = false
+      }
       // this.alarmPlayer.playbackRate = 2
       this.alarmPlayer.currentTime = 0
       this.alarmPlayer.play()
@@ -133,7 +134,7 @@ export default {
     },
     stopAlarm() {
       this.alarmPlayer.pause()
-      this.tickPlayer.muted = false
+      if (!this.muted) {this.alarmPlayer.muted = false}
       this.alarming = false
     },
     updateNowTime() {

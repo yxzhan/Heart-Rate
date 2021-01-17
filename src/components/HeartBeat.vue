@@ -5,14 +5,15 @@
     <div>Heart Rate <b>{{heartBeat}}</b> BPM</div>
 
     <div class="clock-block">
+      <div class="digit-clock"><b>{{now}}</b></div>
+      <div class="digit-clock"><b>{{heartTimeString}}</b></div>
       <Clock3 :time="heartTimeNum" :alarmtime="alarmtime" @alarm="playAlarm"/>
       <!-- <div class="title">Heart Rate Time</div> -->
-      <div class="digit-clock"><b>{{heartTimeString}}</b></div>
-      <div class="digit-clock"><b>{{now}}</b></div>
+
     </div>
 
-    <div>
-      <button id="show-modal" @click="showModal = true">Settings</button>
+    <div class="home-settings-btn">
+      <button  id="show-modal" @click="showModal = true">Settings</button>
     </div>
     <Modal v-if="showModal">
       <!-- <h2 slot="header">Settings</h2> -->
@@ -119,6 +120,7 @@ export default {
       this.heartBeat = parseInt(data.val)
     },
     playTickSound() {
+      if (this.muted) return
       this.tickPlayer.currentTime = 0
       this.tickPlayer.play()
     },
@@ -126,6 +128,7 @@ export default {
       if (!this.alarmEnable) return
       if (!this.muted) {
         this.alarmPlayer.muted = false
+        this.tickPlayer.muted = true
       }
       // this.alarmPlayer.playbackRate = 2
       this.alarmPlayer.currentTime = 0
@@ -134,7 +137,7 @@ export default {
     },
     stopAlarm() {
       this.alarmPlayer.pause()
-      if (!this.muted) {this.alarmPlayer.muted = false}
+      if (!this.muted) {this.tickPlayer.muted = false}
       this.alarming = false
     },
     updateNowTime() {
@@ -207,10 +210,16 @@ ul li span {
 ul li span b{
   margin: 0 5px;
 }
+.home-settings-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .setting-btns {
   margin: 20px 0;
 }
 button {
+  border-radius: 2pt;
   display: block;
   padding: 0 1rem;
   margin: auto;

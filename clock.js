@@ -2,6 +2,9 @@
 var fs = require('fs')
 var mqtt = require('mqtt')
 
+var mqttUrl = 'mqtt://0.0.0.0'
+// var mqttUrl = 'mqtt://broker.mqttdashboard.com'
+
 // Global variables
 var data = []
 var started =  false
@@ -12,7 +15,9 @@ var io = null
 var alarm = '00:00'
 
 // mqtt client
-var client  = mqtt.connect('mqtt://localhost')
+var client  = mqtt.connect(mqttUrl, {
+  clientId: 'server_' + Math.random().toString(36).substring(7)
+})
 
 var handler = {
   'heartclock/alarm': function (data) {
@@ -50,12 +55,17 @@ module.exports = {
   },
   start () {
     if (started) return
-    data = []
+    console.log('Clock started!')
+
+    // data = []
     started = true
-    heartTime = new Date()
+    if (heartTime == null) {
+      heartTime = new Date()
+    }
     countDownHandler(0)
   },
   stop () {
+    console.log('Clock stopped!')
     started = false
     if (timerObj != null) {
       clearTimeout(timerObj)
@@ -71,6 +81,7 @@ module.exports = {
     io = ioObj
   },
   reset() {
+    heartTime = null
     data = []
   }
 }

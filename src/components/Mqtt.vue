@@ -27,36 +27,22 @@ export default {
     return {
       errorMsg: '',
       connection: {
-        host: '192.168.1.153',
+        host: window.location.host.split(':')[0],
+        // host: 'broker.mqttdashboard.com',
         port: 8000,
         endpoint: '/mqtt',
         clean: true, // Reserved session
         connectTimeout: 4000, // Time out
         reconnectPeriod: 4000, // Reconnection interval
         // Certification Information
-        clientId: 'web' + Math.random().toString(36).substring(7),
+        clientId: this.getDevice() + '_' + Math.random().toString(36).substring(7),
         username: 'emqx_test',
         password: 'emqx_test',
       },
-      subscription: {
-        topic: 'topic/mqttx',
-        qos: 0,
-      },
-      publish: {
-        topic: 'topic/browser',
-        qos: 0,
-        payload: '{ "msg": "Hello, I am browser." }',
-      },
       receiveNews: '',
-      qosList: [
-        { label: 0, value: 0 },
-        { label: 1, value: 1 },
-        { label: 2, value: 2 },
-      ],
       client: {
         connected: false,
       },
-      subscribeSuccess: false,
     }
   },
   mounted: function() {
@@ -94,11 +80,20 @@ export default {
       }
 
       this.client.onMessageArrived = (message) => {
-        this.receiveNews = this.receiveNews.concat(message.payloadString)
-        console.log("onMessageArrived:"+message.payloadString)
+        // console.log(`${message.topic}: ${message.payloadString}`)
+        // this.receiveNews = this.receiveNews.concat(message.payloadString)
         this.$emit(message.topic.replace('/', ''), message.payloadString)
 
       }
+    },
+    getDevice() {
+      var res = 'browser'
+      try {
+        res = window.navigator.userAgent.split('(')[1].split(';')[0]
+      } catch (e) {
+        console.log(e)
+      }
+      return res
     }
   }
 }

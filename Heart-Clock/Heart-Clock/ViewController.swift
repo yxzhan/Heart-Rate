@@ -54,56 +54,6 @@ class ViewController: UIViewController, WCSessionDelegate{
       self.api.apiHost = str
     }
     hostInput.text = api.apiHost
-
-  }
-  
-//  func setUpMQTT() {
-//    let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
-//    let mqtt = CocoaMQTT(clientID: clientID, host: "localhost", port: 1883)
-//    mqtt.username = "test"
-//    mqtt.password = "public"
-//    mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
-//    mqtt.keepAlive = 60
-//    mqtt.delegate = self
-//    mqtt.connect()
-//  }
-//
-//  func didReceiveMessage (mqtt, message, id) {
-//
-//  }
-//
-  @IBAction func hostBtnTapped() {
-    let newHost:String = self.hostInput.text ?? api.apiHost
-    self.api.apiHost = newHost
-    self.defaults.set(newHost, forKey: "host")
-
-  }
-  
-  @IBAction func ResetBtnTapped() {
-    self.api.post(0, "", "/resetclock")
-  }
-  
-  @IBAction func uploadHistoryData() {
-//    self.api.post(Double(value) ?? 0, timestamp)
-  }
-  
-  func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-    let action = message["action"] as! String
-    if action == "start" || action == "stop"{
-      self.api.post(0, "", "/" + action + "workout")
-      return
-    }
-    let value = message["value"] as! String
-    let timestamp = message["timestamp"] as! String
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-    let timestampFormat:String = dateFormatter.string(from: Date(timeIntervalSince1970:Double(timestamp)!))
-    let log = timestampFormat + " | " + String(value)
-    allLog = log + "\n" + allLog
-    DispatchQueue.main.async {
-      self.displayLabel.text = "\n" + self.allLog
-      self.api.post(Double(value) ?? 0, timestamp)
-    }
   }
   
   func getHealthDataAuth() {
@@ -117,6 +67,49 @@ class ViewController: UIViewController, WCSessionDelegate{
       }
     }
   }
+
+  // MARK: - Actions
+  @IBAction func hostBtnTapped() {
+    let newHost:String = self.hostInput.text ?? api.apiHost
+    self.api.apiHost = newHost
+    self.defaults.set(newHost, forKey: "host")
+
+    let message = ["action":"update_host", "value": String(newHost)]
+    self.wcSession.sendMessage(message, replyHandler: nil) { (error) in
+      print(error.localizedDescription)
+    }
+  }
+  
+  @IBAction func ResetBtnTapped() {
+    self.api.post(0, "", "/resetclock")
+  }
+  
+  @IBAction func uploadHistoryData() {
+//    self.api.post(Double(value) ?? 0, timestamp)
+  }
+  
+
+  // MARK: WCSession Methods
+  func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+//    let action = message["action"] as! String
+//    if action == "start" || action == "stop"{
+//      self.api.post(0, "", "/" + action + "workout")
+//      return
+//    }
+//    let value = message["value"] as! String
+//    let timestamp = message["timestamp"] as! String
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+//    let timestampFormat:String = dateFormatter.string(from: Date(timeIntervalSince1970:Double(timestamp)!))
+//    let log = timestampFormat + " | " + String(value)
+//    allLog = log + "\n" + allLog
+//    DispatchQueue.main.async {
+//      self.displayLabel.text = "\n" + self.allLog
+//      self.api.post(Double(value) ?? 0, timestamp)
+//    }
+  }
+  
+
   
   func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     

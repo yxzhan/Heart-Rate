@@ -15,14 +15,12 @@ app.post('/heartrate', function (req, res) {
 })
 
 app.post('/startworkout', function (req, res) {
-  console.log('Record started!')
   clock.start()
   res.set("Connection", "close");
   res.end('Record started!');
 })
 
 app.post('/stopworkout', function (req, res) {
-  console.log('Record stopped!')
   clock.stop()
   res.set("Connection", "close");
   res.end('Record stopped!');

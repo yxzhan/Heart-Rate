@@ -48,6 +48,7 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
   let heartRateUnit = HKUnit(from: "count/min")
   var currenQuery : HKQuery?
   let api:Api = Api()
+  let defaults = UserDefaults.standard
 
 
 
@@ -57,7 +58,10 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
   
   override func willActivate() {
     super.willActivate()
-    
+    if let str = defaults.string(forKey: "host") {
+      self.api.apiHost = str
+    }
+  
     wcSession = WCSession.default
     wcSession.delegate = self
     wcSession.activate()
@@ -161,28 +165,33 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
     DispatchQueue.main.async {
       guard let sample = heartRateSamples.first else{return}
       let value = sample.quantity.doubleValue(for: self.heartRateUnit)
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "HH:mm:ss"
+//      let dateFormatter = DateFormatter()
+//      dateFormatter.dateFormat = "HH:mm:ss"
 //      dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-      let timestamp:String = dateFormatter.string(from: sample.startDate)
+//      let timestamp:String = dateFormatter.string(from: sample.startDate)
       
-//      self.api.post(value, timestamp)
       DispatchQueue.main.async {
         self.heartRateLabel.setText(String(UInt16(value)))
 //        self.timeLabel.setText(timestamp)
       }
 
-      print("From watch" + timestamp + " | " + String(value))
-      let message = ["action":"update", "value": String(value), "timestamp":String(sample.startDate.timeIntervalSince1970)]
-      self.wcSession.sendMessage(message, replyHandler: nil) { (error) in
-        print(error.localizedDescription)
-      }
+      self.api.post(value, String(sample.startDate.timeIntervalSince1970))
+
+//      print("From watch" + timestamp + " | " + String(value))
+//      let message = ["action":"update", "value": String(value), "timestamp":String(sample.startDate.timeIntervalSince1970)]
+//      self.wcSession.sendMessage(message, replyHandler: nil) { (error) in
+//        print(error.localizedDescription)
+//      }
     }
   }
   // MARK: WCSession Methods
   func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-
-    
+    let action = message["action"] as! String
+    let value = message["value"] as! String
+    if action == "update_host" {
+      self.defaults.set(value, forKey: "host")
+      self.api.apiHost = value
+    }
   }
   
   func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -199,17 +208,20 @@ class FlightInterfaceController: WKInterfaceController, HKWorkoutSessionDelegate
       if let workout = self.session {
         healthStore.end(workout)
       }
-      self.wcSession.sendMessage(["action":"stop"], replyHandler: nil) { (error) in
-        print(error.localizedDescription)
-      }
+      self.api.post(0, "", "/stopworkout")
+
+//      self.wcSession.sendMessage(["action":"stop"], replyHandler: nil) { (error) in
+//        print(error.localizedDescription)
+//      }
     } else {
       //start a new workout
       self.workoutActive = true
       self.startStopBtn.setTitle("Stop")
       startWorkout()
-      self.wcSession.sendMessage(["action":"start"], replyHandler: nil) { (error) in
-        print(error.localizedDescription)
-      }
+      self.api.post(0, "", "/startworkout")
+//      self.wcSession.sendMessage(["action":"start"], replyHandler: nil) { (error) in
+//        print(error.localizedDescription)
+//      }
     }
   }
   

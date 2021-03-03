@@ -34,9 +34,9 @@
           
           <div class="radio">
             <span>Sound</span>
-            <input type="radio" id="sound-on" v-bind:value="true" v-model="muted">
+            <input type="radio" id="sound-on" v-bind:value="false" v-model="muted">
             <label for="sound-on">On</label>
-            <input type="radio" id="sound-off" v-bind:value="false" v-model="muted">
+            <input type="radio" id="sound-off" v-bind:value="true" v-model="muted">
             <label for="sound-off">Off</label>
           </div>
           <!-- <input style="width: 200px" v-model="mqtturl" placeholder="mqtt url"> -->

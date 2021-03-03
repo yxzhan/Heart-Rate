@@ -5,6 +5,7 @@ var port = process.env.PORT || 3000;
 var fs = require('fs');
 var os = require('os');
 var moment = require('moment')
+var serveIndex = require('serve-index');
 
 var clock = require('./clock')
 
@@ -12,6 +13,10 @@ var data = []
 var currentFileName = ''
 
 app.use(express.json())
+
+app.use('/', express.static('dist'))
+app.use('/data', express.static('data'))
+app.use('/data',serveIndex(__dirname + '/data'))
 
 app.post('/heartrate', function (req, res) {
   // console.log(req.body)

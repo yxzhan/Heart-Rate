@@ -1,9 +1,8 @@
-// var moment = require('moment')
 var fs = require('fs')
 var mqtt = require('mqtt')
 
-var mqttUrl = 'mqtt://0.0.0.0'
-// var mqttUrl = 'mqtt://broker.mqttdashboard.com'
+// var mqttUrl = 'mqtt://0.0.0.0'
+var mqttUrl = 'mqtt://broker.mqttdashboard.com'
 
 // Global variables
 var data = []
@@ -49,6 +48,7 @@ function countDownHandler (second = 1) {
 // mehtods for http server
 module.exports = {
   update(d) {
+    console.log(d)
     heartBeat = d.val
     data.push(d)
     client.publish('heartclock/rate', JSON.stringify(d))
@@ -70,6 +70,7 @@ module.exports = {
     if (timerObj != null) {
       clearTimeout(timerObj)
     }
+    client.publish('heartclock/stop', '')
   },
   getAlarm () {
     return alarm

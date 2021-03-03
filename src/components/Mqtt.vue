@@ -14,6 +14,7 @@ export default {
   name: 'Mqtt',
   props: { 
     alarmtime: String,
+    mqtturl: String,
   },
   watch:{
     alarmtime(val) {
@@ -21,14 +22,17 @@ export default {
       var message = new Paho.Message(val)
       message.destinationName = 'heartclock/alarm'
       this.client.send(message)
+    },
+    mqtturl (val) {
+      this.initWs()
     }
   },
   data() {
     return {
       errorMsg: '',
       connection: {
-        host: window.location.host.split(':')[0],
-        // host: 'broker.mqttdashboard.com',
+        // host: window.location.host.split(':')[0],
+        host: this.mqtturl,
         port: 8000,
         endpoint: '/mqtt',
         clean: true, // Reserved session

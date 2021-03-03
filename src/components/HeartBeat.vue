@@ -16,19 +16,34 @@
       <button  id="show-modal" @click="showModal = true">Settings</button>
     </div>
     <Modal v-if="showModal">
-      <!-- <h2 slot="header">Settings</h2> -->
+      <h2 slot="header">Settings</h2>
       <div slot="body">
-        <VueClockPicker 
-          v-show="alarmEnable"
-          label="Alarm Clock"
-          v-model="alarmtime"
-          :placeholder="'Set AlarmClock'" 
-          v-on:timeset="setAlarm" />
         <div class="setting-btns">
-          <button @click="alarmEnable = !alarmEnable">{{alarmEnable ? 'Turn off Alarm' : 'Turn on Alarm'}}</button>
-          <button @click="muted = !muted">{{muted ? 'Turn on Sound' : 'Mute'}}</button>
-          <!-- <button v-if="alarming" @click="stopAlarm">stop alarm</button> -->
+          <div class="radio">
+            <span>Alarm Clock</span>
+            <input type="radio" id="alarm-on" v-bind:value="true" v-model="alarmEnable">
+            <label for="alarm-on">On</label>
+            <input type="radio" id="alarm-off" v-bind:value="false" v-model="alarmEnable">
+            <label for="alarm-off">Off</label>
+          </div>
+          <VueClockPicker 
+              v-show="alarmEnable"
+              v-model="alarmtime"
+              :placeholder="'Set AlarmClock'" 
+              v-on:timeset="setAlarm" />
+          
+          <div class="radio">
+            <span>Sound</span>
+            <input type="radio" id="sound-on" v-bind:value="true" v-model="muted">
+            <label for="sound-on">On</label>
+            <input type="radio" id="sound-off" v-bind:value="false" v-model="muted">
+            <label for="sound-off">Off</label>
+          </div>
+          <!-- <input style="width: 200px" v-model="mqtturl" placeholder="mqtt url"> -->
         </div>
+          <!-- <button @click="alarmEnable = !alarmEnable">{{alarmEnable ? 'Turn off Alarm' : 'Turn on Alarm'}}</button>
+          <button @click="muted = !muted">{{muted ? 'Turn on Sound' : 'Mute'}}</button> -->
+          <!-- <button v-if="alarming" @click="stopAlarm">stop alarm</button> -->
       </div>
       <div slot="footer">
         <button class="modal-default-button" @click="showModal = false">Close</button>
@@ -45,6 +60,7 @@
     </Modal>
 
     <Mqtt :alarmtime="alarmtime"
+          :mqtturl="mqtturl"
           @heartclockrate="onHeartrate" 
           @heartclocktime="onHearttime" 
           @heartclockalarm="onAlarmChanged" />
@@ -85,6 +101,7 @@ export default {
       audioSrc: '',
       muted: true,
       alarmEnable: true,
+      mqtturl: 'broker.mqttdashboard.com',
     }
   },
   watch: {
@@ -218,6 +235,13 @@ ul li span b{
 .setting-btns {
   margin: 20px 0;
 }
+.setting-btns>div {
+  margin: 15pt 0;
+}
+.setting-btns .radio>input{
+  margin-left: 8pt;
+}
+
 button {
   border-radius: 2pt;
   display: block;

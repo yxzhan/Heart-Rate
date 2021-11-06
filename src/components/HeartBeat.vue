@@ -2,12 +2,17 @@
 
   <div class="heart-beat">
 
-    <div>Heart Rate <b>{{heartBeat}}</b> BPM</div>
-
-    <div class="clock-block">
+    <div class="info-block" v-show="showInfo">
+      <div>Heart Rate <b>{{heartBeat}}</b> BPM</div>
       <div class="digit-clock"><b>{{now}}</b></div>
       <div class="digit-clock"><b>{{heartTimeString}}</b></div>
-      <Clock3 :time="heartTimeNum" :alarmtime="alarmtime" @alarm="playAlarm"/>
+    </div>
+
+    <div class="clock-block">
+      <Clock3 :time="heartTimeNum"
+              :alarmenable="alarmEnable"
+              :digit="digit"
+              :alarmtime="alarmtime" @alarm="playAlarm"/>
       <!-- <div class="title">Heart Rate Time</div> -->
 
     </div>
@@ -39,6 +44,22 @@
             <input type="radio" id="sound-off" v-bind:value="true" v-model="muted">
             <label for="sound-off">Off</label>
           </div>
+          <div class="radio">
+            <span>Digit on Panel</span>
+            <input type="radio" id="digit-on" v-bind:value="true" v-model="digit">
+            <label for="digit-on">Show</label>
+            <input type="radio" id="digit-off" v-bind:value="false" v-model="digit">
+            <label for="digit-off">Hide</label>
+          </div>
+          <div class="radio">
+            <span>Other info</span>
+            <input type="radio" id="info-on" v-bind:value="true" v-model="showInfo">
+            <label for="info-on">Show</label>
+            <input type="radio" id="info-off" v-bind:value="false" v-model="showInfo">
+            <label for="info-off">Hide</label>
+          </div>
+          
+
           <!-- <input style="width: 200px" v-model="mqtturl" placeholder="mqtt url"> -->
         </div>
           <!-- <button @click="alarmEnable = !alarmEnable">{{alarmEnable ? 'Turn off Alarm' : 'Turn on Alarm'}}</button>
@@ -89,6 +110,8 @@ export default {
   data: function() {
     return {
       showModal:false,
+      showInfo: false,
+      digit: false,
       socket: null,
       alarmtime: '',
       now: '',
@@ -100,8 +123,10 @@ export default {
       alarming: false,
       audioSrc: '',
       muted: true,
-      alarmEnable: true,
-      mqtturl: 'broker.mqttdashboard.com',
+      alarmEnable: false,
+      // mqtturl: 'broker.mqttdashboard.com',
+      mqtturl: '34.90.188.150',
+      // mqtturl: window.location.host.split(':')[0],
     }
   },
   watch: {

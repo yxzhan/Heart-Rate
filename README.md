@@ -1,6 +1,9 @@
 # Monitor apple watch heart rate data and display on web page
 
 ### Install dependencies
+install nodejs 
+install docker
+pull docker image hivemq/hivemq4
 ```
 npm install
 ```

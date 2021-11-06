@@ -14,7 +14,7 @@
     <span class="analog-clock__hand -seconds" :style="seconds"></span>
     <span class="analog-clock__hand -minutes" :style="minutes"></span>
     <span class="analog-clock__hand -hours" :style="hours"></span>
-    <span class="analog-clock__hand -alarm" :style="alarm"></span>
+    <span v-show="alarmenable" class="analog-clock__hand -alarm" :style="alarm"></span>
 
   </figure>
 </div>
@@ -27,6 +27,7 @@ export default {
   props: { 
     time: Number, 
     alarmtime: String,
+    alarmenable: Boolean,
     digit:{
       default: false,
       type: Boolean
@@ -166,11 +167,14 @@ export default {
   .panel-digit {
     position: absolute;
     text-align: center;
-    left: -10px;
-    color: #222;
+    color: #ccc;
+    font-size: 3vw;
+    left: -1vw;
+    
+    color: rgb(50, 50, 50);
     // background: yellow;
-    width: 20px;
-    top: 12px;
+    // width: 6vw;
+    top: 3vw;
   }
 
   &__hand {

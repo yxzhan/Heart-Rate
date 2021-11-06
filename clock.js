@@ -1,7 +1,7 @@
 var fs = require('fs')
 var mqtt = require('mqtt')
 
-// var mqttUrl = 'mqtt://0.0.0.0'
+// var mqttUrl = 'mqtt://34.90.188.150'
 var mqttUrl = 'mqtt://broker.mqttdashboard.com'
 
 // Global variables
@@ -27,9 +27,14 @@ var handler = {
   }
 }
 
-client.on('connect', function () { 
-  client.subscribe('heartclock/alarm')
+client.on('connect', function () {
+  console.log('mqtt connected')
+  // client.subscribe('heartclock/alarm')
   client.subscribe('heartclock/newclient')
+})
+
+client.on('disconnect', function () {
+  console.log('mqtt lost connection')
 })
 
 client.on('message', function (topic, message) {
@@ -82,7 +87,7 @@ module.exports = {
     io = ioObj
   },
   reset() {
-    heartTime = null
+    heartTime = new Date()
     data = []
   }
 }

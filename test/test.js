@@ -1,18 +1,18 @@
-var mqtt = require('mqtt')
-var client  = mqtt.connect('mqtt://broker.mqttdashboard.com')
- 
-client.on('connect', function () {
-  client.subscribe('testtopic/1', function (err) {
-    if (err) { console.log(err)}
+var Paho = require('paho-mqtt')
 
-  })
+// var client  = mqtt.connect('mqtt://broker.mqttdashboard.com')
+var client = new Paho.Client('mqtt://broker.mqttdashboard.com')
+
+
+client.connect({onSuccess: () => {
   client.subscribe('heartclock/rate')
   client.subscribe('heartclock/time')
   client.subscribe('heartclock/alarm')
-})
- 
-client.on('message', function (topic, message) {
-  // message is Buffer
-  console.log(message.toString())
-  // client.end()
-})
+  var message = new Paho.MQTT.Message('hehe')
+  message.destinationName = 'heartclock/newclient'
+  client.send(message)
+}})
+
+client.onMessageArrived = (message) => {
+  console.log(`${message.topic}: ${message.payloadString}`)
+}

@@ -1,7 +1,7 @@
 var fs = require('fs')
 var mqtt = require('mqtt')
 
-// var mqttUrl = 'mqtt://34.90.188.150'
+// var mqttUrl = 'mqtt://34.78.78.156'
 var mqttUrl = 'mqtt://broker.mqttdashboard.com'
 
 // Global variables
